@@ -1,4 +1,0 @@
-Between buy and sale what's maximum amount of profit and least amount will be loss
-Store that in new column
-Give difference between either percentage with Initial Investment amount or 
-give extra amount of cash from Investment amount

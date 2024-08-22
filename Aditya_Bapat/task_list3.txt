@@ -1,8 +1,0 @@
-calculate percentage of buy value and sell value
-if i invested 1000 and got 2000 in return and similarly invested 100000 and got 
-100200 in return what will be profit amount in percentage
-
-for every buy-sell timespan 
-consider total cost value of buy and sell
-compare the percentage difference between them both.
-

@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 import numpy as np
 import math
 csv_file = input(f'File name whose operation has to be done: ')
-df1 = pd.read_csv(csv_file)
+df1 = pd.read_csv(f'{csv_file}.csv')
 csv_file2 = input('Buy Sell signal file name: ')
 df2 = pd.read_csv(f'{csv_file2}.csv')
 

@@ -22,3 +22,13 @@ iii) Comparison of both Datasets throught line chart.
 
 anual_interest.py:
 Calculate Anual Interest on charge
+
+local_maxima 
+local minima
+
+if local_maxima > previous_local_maxima:
+    calculate local minima from date of new-local_maxima
+elif local_maxima < previous_local_maxima:
+    Calculate local minima from date of local_maxima
+
+where min value of new local minima is stored, only include that record, rest of record no need to append

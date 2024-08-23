@@ -21,7 +21,6 @@ last_buy_signal = None  # To keep track of the last Buy signal for Buy - Sell
 for i in range(1, len(df)):
     current_signal = df['Signal'].iloc[i]
     previous_investment = df.iloc[i - 1]['Investment'] if i > 0 else 0
-
     # Short Sell Signal to Buy Signal (Can be repeated)
     if current_signal == 'Buy':
         short_sell_signal = None

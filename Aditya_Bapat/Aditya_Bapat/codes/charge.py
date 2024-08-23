@@ -88,7 +88,7 @@ for i in range(len(df1)):
             row['Shares Bought'] = locked_shares
             row['Investment'] = locked_shares * row['Close Price']
             row['Remaining Cash'] = locked_remaining_cash  # Keep remaining cash constant
-            row['Profit/Loss'] =  row['Investment'] - previous_investment
+            row['Profit/Loss'] = previous_investment - row['Investment']
             row['Total Cash'] = previous_total_cash + row['Profit/Loss']
     elif signal == 'Sell':
         # Reset for the next cycle

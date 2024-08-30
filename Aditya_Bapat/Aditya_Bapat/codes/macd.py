@@ -18,8 +18,6 @@ end_Year = int(input('End Year: '))
 end_date = f'{end_Year}-{end_month}-{end_day}'
 df = yf.download(ticker, start=start_date, end=end_date, interval='1h')
 
-# path = input('Enter File whose MACD has to be found out: ')
-# df = pd.read_csv(f'{path}.csv')
 
 df.info()
 
@@ -102,11 +100,11 @@ for i in range(1, len(df)):
       shares_bought = math.floor(prev_total_cash / close_price)
       investment = shares_bought * close_price
       remaining_cash = prev_total_cash - investment
-      profit = investment - prev_signal['Investment']
       if prev_signal['Investment'] == 0:
-        profit = 0
-        total_cash = prev_total_cash
-      else:
+          profit = 0
+          total_cash = prev_signal['Total Cash']
+      else:        
+        profit = investment - prev_signal['Investment']
         total_cash = prev_total_cash + profit
 
       signal_list2.append({
@@ -114,7 +112,7 @@ for i in range(1, len(df)):
             'Date': df.index[i],
             'Close Price': close_price,
             'Shares Bought': shares_bought,
-            'Profit/Loss': 0,
+            'Profit/Loss': profit,
             'Investment': investment,
             'Remaining Cash': remaining_cash,
             'Hold': "Buy",
@@ -148,8 +146,6 @@ for i in range(1, len(df)):
         sb = 0
         investment = 0
         profit = 0
-        total_cash = prev_signal['Total Cash']
-        remaining_cash = prev_signal['Remaining Cash']
 
         signal_list2.append({
             'Signal': 'Sell',
@@ -158,9 +154,9 @@ for i in range(1, len(df)):
             'Profit/Loss': profit,
             'Investment': investment,
             'Shares Bought': sb,
-            'Remaining Cash': remaining_cash,
+            'Remaining Cash': prev_signal['Remaining Cash'],
             'Hold': "Sell Hold",
-            'Total Cash': total_cash,
+            'Total Cash': prev_signal['Total Cash'],
         })
         holding = 'sell'
 
@@ -172,7 +168,7 @@ for i in range(1, len(df)):
             if prev_investment == 0:
                 profit = 0
             else:
-                profit = investment - prev_investment
+                profit = prev_investment - investment
             rem = signal_list2[-1]['Total Cash']-investment
             total_cash = signal_list2[-1]['Total Cash'] + profit
             if total_cash < 0:
@@ -188,6 +184,7 @@ for i in range(1, len(df)):
                 'Hold': "Sell Hold",
                 'Total Cash': total_cash
             })
+
 
 results_df = pd.DataFrame(signal_list2)
 
